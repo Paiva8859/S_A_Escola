@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SAEscolaApplication<s_a_escola>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "webapp.s_a_escola.SAEscolaApplication",
+            "projectName": "s_a_escola",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

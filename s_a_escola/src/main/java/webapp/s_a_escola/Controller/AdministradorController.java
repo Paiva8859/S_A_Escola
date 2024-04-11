@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import webapp.s_a_escola.Model.Administrador;
 import webapp.s_a_escola.Repository.AdministradorRepository;
 import webapp.s_a_escola.Repository.PreCadRepository;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -56,12 +57,13 @@ public class AdministradorController {
                 url = "redirect:/interna-adm";
             } else {
                 url = "redirect:/login-adm";
+                System.out.println("Erro de login");
             }
             return url;
         } catch (Exception e) {
+            System.out.println("Erro de login");
             return "redirect:/login-adm";
         }
 
     }
-
 }

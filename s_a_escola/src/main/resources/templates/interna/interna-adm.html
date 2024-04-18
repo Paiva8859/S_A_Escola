@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <link rel="stylesheet" th:href="@{css/style-cadastro.css}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
         <div th:insert="~{fragmentos/header :: header}"><!-- barra de menu --></div>
@@ -34,7 +36,8 @@
                                 <div class="form-group">
                                     <input type="password" class="form-control" placeholder="Senha" name="senha">
                                 </div>
-                                <button type="submit" class="btn btn-block btn-register"><i class="fas fa-user-plus"></i> Cadastrar</button>
+                                <button type="submit" class="btn btn-block btn-register"><i
+                                        class="fas fa-user-plus"></i> Cadastrar</button>
                             </form>
                         </div>
                     </div>
@@ -57,13 +60,55 @@
                                 <div class="form-group">
                                     <input type="email" class="form-control" placeholder="Email" name="email">
                                 </div>
-                                <button type="submit" class="btn btn-block btn-register"><i class="fas fa-user-plus"></i> Cadastrar</button>
+                                <button type="submit" class="btn btn-block btn-register"><i
+                                        class="fas fa-user-plus"></i> Cadastrar</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="register-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Lista de Alunos</h3>
+                        </div>
+                        <div class="card-body">
+                            <!-- Formulário de pesquisa por nome -->
+                            <form action="/pesquisa-aluno" method="post">
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Pesquisar por nome" name="nome" id="nome">
+                                    <button class="btn btn-outline-secondary" type="submit">Pesquisar</button>
+                                </div>
+                            </form>
+                            <!-- Exibição dos alunos -->
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>RA</th>
+                                        <th>Nome</th>
+                                        <th>Email</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Verifica se há resultados da pesquisa -->
+                                    <tr th:if="${alunos != null}" th:each="aluno : ${alunos}">
+                                        <td th:text="${aluno.ra}"></td>
+                                        <td th:text="${aluno.nome}"></td>
+                                        <td th:text="${aluno.email}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
     </div>
 </body>
+
 </html>

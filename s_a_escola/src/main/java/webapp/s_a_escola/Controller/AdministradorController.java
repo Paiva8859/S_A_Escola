@@ -64,6 +64,5 @@ public class AdministradorController {
             System.out.println("Erro de login");
             return "redirect:/login-adm";
         }
-
     }
 }

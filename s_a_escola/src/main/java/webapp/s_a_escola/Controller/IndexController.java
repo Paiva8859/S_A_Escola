@@ -31,4 +31,9 @@ public class IndexController {
     public String acessoLoginAluno() {
         return "login/login-aluno";
     }
+
+    @GetMapping("/login-professor")
+    public String acessoLoginProfessor() {
+        return "login/login-professor";
+    }
 }

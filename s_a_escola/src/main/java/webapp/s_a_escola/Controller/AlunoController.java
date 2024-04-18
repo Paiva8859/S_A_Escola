@@ -2,6 +2,7 @@ package webapp.s_a_escola.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,7 +12,7 @@ import webapp.s_a_escola.Repository.AlunoRepository;
 
 @Controller
 public class AlunoController {
-    
+
     boolean acessoAluno = false;
 
     @Autowired
@@ -20,22 +21,24 @@ public class AlunoController {
     @PostMapping("cadastrar-aluno")
     public String cadastrarAlunoBD(Aluno al) {
         alr.save(al);
-        al.setRa("2024"+String.valueOf(alr.findByIdList().size()));
-        al.setSenha("2024"+String.valueOf(alr.findByIdList().size()));
+        al.setRa("2024" + String.valueOf(alr.findByIdList().size()));
+        al.setSenha("2024" + String.valueOf(alr.findByIdList().size()));
 
         alr.save(al);
         System.out.println("Cadastro Realizado com Sucesso");
-        return "/interna/interna-aluno";
+        return "/interna/interna-adm";
     }
 
     @GetMapping("/interna-aluno")
-    public String acessoPageInternaAluno() {
+    public String acessoPageInternaAluno(@RequestParam String ra, Model model) {
         String vaiPara = "";
         if (acessoAluno) {
             vaiPara = "interna/interna-aluno";
         } else {
             vaiPara = "login/login-aluno";
         }
+        Aluno aluno = alr.findByRa(ra);
+        model.addAttribute("aluno", aluno);
         return vaiPara;
     }
 
@@ -48,7 +51,7 @@ public class AlunoController {
             String url = "";
             if (verificaRa && verificaSenha) {
                 acessoAluno = true;
-                url = "redirect:interna-aluno";
+                url = "redirect:interna-aluno?ra=" + ra;
             } else {
                 url = "redirect:/login-aluno";
                 System.out.println("Erro de login");
@@ -58,6 +61,14 @@ public class AlunoController {
             System.out.println("Erro de login");
             return "redirect:/login-aluno";
         }
-
     }
+
+    @PostMapping("/pesquisa-aluno")
+    public String pesquisaAlunoPorNome(@RequestParam String nome, Model model) {
+        // Realiza a pesquisa de alunos por nome
+        Iterable<Aluno> alunos = alr.findByNomeContaining(nome);
+        model.addAttribute("alunos", alunos);
+        return "interna/interna-adm";
+    }
+
 }

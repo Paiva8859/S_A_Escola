@@ -37,12 +37,39 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Matemática</td>
-                                        <td th:text="${aluno.notaB1}"></td>
-                                        <td th:text="${aluno.notaB2}"></td>
-                                        <td th:text="${aluno.notaB3}"></td>
-                                        <td th:text="${aluno.notaB4}"></td>
+                                    <tr th:if="${aluno.materiaExatas}">
+                                        <td>Exatas</td>
+                                        <td th:text="${aluno.notaExatasB1}"></td>
+                                        <td th:text="${aluno.notaExatasB2}"></td>
+                                        <td th:text="${aluno.notaExatasB3}"></td>
+                                        <td th:text="${aluno.notaExatasB4}"></td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr th:if="${aluno.materiaHumanas}">
+                                        <td>Humanas</td>
+                                        <td th:text="${aluno.notaHumanasB1}"></td>
+                                        <td th:text="${aluno.notaHumanasB2}"></td>
+                                        <td th:text="${aluno.notaHumanasB3}"></td>
+                                        <td th:text="${aluno.notaHumanasB4}"></td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr th:if="${aluno.materiaCiencias}">
+                                        <td>Ciências da Natureza</td>
+                                        <td th:text="${aluno.notaCienciasB1}"></td>
+                                        <td th:text="${aluno.notaCienciasB2}"></td>
+                                        <td th:text="${aluno.notaCienciasB3}"></td>
+                                        <td th:text="${aluno.notaCienciasB4}"></td>
+                                    </tr>
+                                </tbody>
+                                <tbody>
+                                    <tr th:if="${aluno.materiaLinguagens}">
+                                        <td>Linguagens</td>
+                                        <td th:text="${aluno.notaLinguagensB1}"></td>
+                                        <td th:text="${aluno.notaLinguagensB2}"></td>
+                                        <td th:text="${aluno.notaLinguagensB3}"></td>
+                                        <td th:text="${aluno.notaLinguagensB4}"></td>
                                     </tr>
                                 </tbody>
                             </table>

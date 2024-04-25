@@ -18,15 +18,24 @@ public class AlunoController {
     @Autowired
     AlunoRepository alr;
 
-    @PostMapping("cadastrar-aluno")
-    public String cadastrarAlunoBD(Aluno al) {
-        alr.save(al);
-        al.setRa("2024" + String.valueOf(alr.findByIdList().size()));
-        al.setSenha("2024" + String.valueOf(alr.findByIdList().size()));
+    @PostMapping("/cadastrar-aluno")
+    public String cadastrarAlunoBD(Aluno al,
+                                   @RequestParam(required = false) boolean materiaExatas,
+                                   @RequestParam(required = false) boolean materiaHumanas,
+                                   @RequestParam(required = false) boolean materiaCiencias,
+                                   @RequestParam(required = false) boolean materiaLinguagens) {
+        al.setMateriaExatas(materiaExatas);
+        al.setMateriaHumanas(materiaHumanas);
+        al.setMateriaCiencias(materiaCiencias);
+        al.setMateriaLinguagens(materiaLinguagens);
+
+        String ra = "2024" + String.valueOf(alr.findByIdList().size());
+        al.setRa(ra);
+        al.setSenha(ra);
 
         alr.save(al);
         System.out.println("Cadastro Realizado com Sucesso");
-        return "/interna/interna-adm";
+        return "interna/interna-adm";
     }
 
     @GetMapping("/interna-aluno")
@@ -65,10 +74,16 @@ public class AlunoController {
 
     @PostMapping("/pesquisa-aluno")
     public String pesquisaAlunoPorNome(@RequestParam String nome, Model model) {
-        // Realiza a pesquisa de alunos por nome
         Iterable<Aluno> alunos = alr.findByNomeContaining(nome);
         model.addAttribute("alunos", alunos);
         return "interna/interna-adm";
+    }
+
+    @GetMapping("/minhas-notas")
+    public String exibirNotas(Model model, @RequestParam String ra) {
+        Aluno aluno = alr.findByRa(ra);
+        model.addAttribute("aluno", aluno);
+        return "pagina_notas";
     }
 
 }

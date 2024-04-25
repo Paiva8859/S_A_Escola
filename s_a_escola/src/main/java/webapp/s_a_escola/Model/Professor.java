@@ -11,6 +11,35 @@ public class Professor implements Serializable{
     private String nome;
     private String email;
     private String senha;
+    private boolean materiaExatas;
+    private boolean materiaHumanas;
+    private boolean materiaCiencias;
+    private boolean materiaLinguagens;
+
+    public boolean isMateriaExatas() {
+        return materiaExatas;
+    }
+    public void setMateriaExatas(boolean materiaExatas) {
+        this.materiaExatas = materiaExatas;
+    }
+    public boolean isMateriaHumanas() {
+        return materiaHumanas;
+    }
+    public void setMateriaHumanas(boolean materiaHumanas) {
+        this.materiaHumanas = materiaHumanas;
+    }
+    public boolean isMateriaCiencias() {
+        return materiaCiencias;
+    }
+    public void setMateriaCiencias(boolean materiaCiencias) {
+        this.materiaCiencias = materiaCiencias;
+    }
+    public boolean isMateriaLinguagens() {
+        return materiaLinguagens;
+    }
+    public void setMateriaLinguagens(boolean materiaLinguagens) {
+        this.materiaLinguagens = materiaLinguagens;
+    }
 
     public String getCpf() {
         return cpf;

@@ -76,7 +76,7 @@ public class AlunoController {
     public String pesquisaAlunoPorNome(@RequestParam String nome, Model model) {
         Iterable<Aluno> alunos = alr.findByNomeContaining(nome);
         model.addAttribute("alunos", alunos);
-        return "interna/list-alunos";
+        return "interna/interna-adm";
     }
 
     @GetMapping("/minhas-notas")

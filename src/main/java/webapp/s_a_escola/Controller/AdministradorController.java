@@ -65,37 +65,4 @@ public class AdministradorController {
             return "redirect:/login-adm";
         }
     }
-
-    @GetMapping("/cad-prof")
-    public String acessoCadProf() {
-        String vaiPara = "";
-        if (acessoAdm) {
-            vaiPara = "cadastro/cad-prof";
-        } else {
-            vaiPara = "login/login-adm";
-        }
-        return vaiPara;
-    }
-
-    @GetMapping("/cad-aluno")
-    public String acessoCadAluno() {
-        String vaiPara = "";
-        if (acessoAdm) {
-            vaiPara = "cadastro/cad-aluno";
-        } else {
-            vaiPara = "login/login-adm";
-        }
-        return vaiPara;
-    }
-    
-    @GetMapping("/list-alunos")
-    public String acessoListaAlunos() {
-        String vaiPara = "";
-        if (acessoAdm) {
-            vaiPara = "interna/list-alunos";
-        } else {
-            vaiPara = "login/login-adm";
-        }
-        return vaiPara;
-    }
 }
